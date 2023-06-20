@@ -1,6 +1,6 @@
 const GameBoard = (() => {
     let board = []
-    
+
     for (let i = 0; i < 3; i++) {
         board[i] = []
 
@@ -10,24 +10,21 @@ const GameBoard = (() => {
         
     }
     
-
     const drawBoard = () => {
         //draws the board to console
-        
         for (let i =0; i<3; i++){
             for (let j =0; j<3; j++){
                 console.log(board[i][j])
             }
         }
-
     }
 
-    const writeMarker = (player, x, y) => {
+    const writeMarker = (x, y) => {
         if (board[x][y] != '-') {
             console.log('the cell is already taken')
             return;
         } 
-        board[x][y] = player.marker
+        board[x][y] = 'X'
     }
 
     return {drawBoard, board, writeMarker}
@@ -35,16 +32,24 @@ const GameBoard = (() => {
 
 
 const DisplayController = (() => {
+    const container = document.querySelector(".board")
 
-    const drawBoard = (container) => {
+    const drawBoard = () => {
+        container.textContent = ''
         for (let i =0; i<3; i++){
             for (let j =0; j<3; j++){
                 cell = document.createElement('div')
                 cell.textContent = GameBoard.board[i][j]
+                cell.style.backgroundColor = 'blue'
+                
+                cell.addEventListener('click', () => {
+                    GameBoard.writeMarker(i,j)
+                    drawBoard()}
+                    )
+
                 container.appendChild(cell)
 
-                cell.addEventListener('click', GameBoard.writeMarker())
-
+                
                 
                 
                 
@@ -66,8 +71,8 @@ console.log(GameBoard.board)
 
 One = Player('Johnny', 'X')
 
-container = document.querySelector(".board")
 
-GameBoard.writeMarker(One, 1,2)
 
-DisplayController.drawBoard(container)
+GameBoard.writeMarker(1,2)
+
+DisplayController.drawBoard()
