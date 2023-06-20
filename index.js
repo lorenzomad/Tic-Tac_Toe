@@ -12,10 +12,6 @@ const GameBoard = (() => {
         current_player = first_player
     }
 
-    
-
-    
-    
     const changePlayer = () => {
         current_player = (current_player === first_player ? second_player : first_player)
     }
@@ -28,6 +24,26 @@ const GameBoard = (() => {
                 board[i].push(['-'])
             }
         }
+        DisplayController.drawBoard()
+    }
+
+    const checkWin = () => {
+        if (board[0][0] === board[1][1] && board[0][0]=== board[2][2] && board[0][0] != '-'){
+            console.log("diagonal 1 winner is " + board[0][0])
+        }
+
+        if (board[0][2] === board[1][1] && board[0][2] === board[2][0] && board[0][2] != '-'){
+            console.log("diagonal 2 winner is " + board[2][0])
+        }
+        for (let i = 0 ; i<3; i++) {
+            if (board[i][0] === board[i][1] && board[i][0] === board[i][2] && board[i][0] != '-') {
+                console.log("horizontal winner is " + board[i][0])
+            }
+            if (board[0][i] === board[1][i] && board[0][i] === board[2][i] && board[0][i] != '-') {
+                console.log("vertical winner is " + board[0][i])
+            }
+        }
+        
     }
 
     const writeMarker = (x, y) => {
@@ -36,8 +52,11 @@ const GameBoard = (() => {
             return;
         } 
         board[x][y] = current_player.marker
+        checkWin()
         changePlayer()
     }
+
+    
 
     return {
         get board() {
@@ -83,15 +102,11 @@ const Player = (name, marker) =>{
 One = Player('Johnny', 'X')
 Two = Player('Mark', 'O')
 
-console.log(GameBoard.board)
 GameBoard.assignPlayers(One, Two)
-GameBoard.resetBoard()
-
-console.log(GameBoard.board)
 
 
 reset_button = document.querySelector('.reset')
 reset_button.addEventListener('click', () => {
     GameBoard.resetBoard()
-    DisplayController.drawBoard()}
+    }
     )
