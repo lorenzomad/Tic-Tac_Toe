@@ -1,6 +1,21 @@
 const GameBoard = (() => {
     let board = []
 
+    let first_player
+    let second_player
+    let current_player
+
+
+    const assignPlayers = (player_one, player_two) => {
+        first_player = player_one
+        second_player = player_two
+
+        current_player = first_player
+    }
+
+
+    
+
     // TODO handle active player 
 
     for (let i = 0; i < 3; i++) {
@@ -12,6 +27,13 @@ const GameBoard = (() => {
         
     }
     
+    const changePlayer = () => {
+        
+        current_player = (current_player === first_player ? second_player : first_player)
+        
+        console.log(current_player)
+    }
+
     const drawBoard = () => {
         //draws the board to console
         for (let i =0; i<3; i++){
@@ -26,10 +48,11 @@ const GameBoard = (() => {
             console.log('the cell is already taken')
             return;
         } 
-        board[x][y] = 'X'
+        board[x][y] = current_player.marker
+        changePlayer()
     }
 
-    return {drawBoard, board, writeMarker}
+    return {drawBoard, board, writeMarker, assignPlayers, changePlayer}
 }) ()
 
 
@@ -72,6 +95,9 @@ GameBoard.drawBoard()
 console.log(GameBoard.board)
 
 One = Player('Johnny', 'X')
+Two = Player('Mark', 'O')
+
+GameBoard.assignPlayers(One, Two)
 
 
 
