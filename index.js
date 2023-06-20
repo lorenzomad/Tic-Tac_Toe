@@ -29,18 +29,18 @@ const GameBoard = (() => {
 
     const checkWin = () => {
         if (board[0][0] === board[1][1] && board[0][0]=== board[2][2] && board[0][0] != '-'){
-            console.log("diagonal 1 winner is " + board[0][0])
+            DisplayController.displayWinner(current_player)
         }
 
         if (board[0][2] === board[1][1] && board[0][2] === board[2][0] && board[0][2] != '-'){
-            console.log("diagonal 2 winner is " + board[2][0])
+            DisplayController.displayWinner(current_player)
         }
         for (let i = 0 ; i<3; i++) {
             if (board[i][0] === board[i][1] && board[i][0] === board[i][2] && board[i][0] != '-') {
-                console.log("horizontal winner is " + board[i][0])
+                DisplayController.displayWinner(current_player)
             }
             if (board[0][i] === board[1][i] && board[0][i] === board[2][i] && board[0][i] != '-') {
-                console.log("vertical winner is " + board[0][i])
+                DisplayController.displayWinner(current_player)
             }
         }
         
@@ -52,6 +52,7 @@ const GameBoard = (() => {
             return;
         } 
         board[x][y] = current_player.marker
+        DisplayController.drawBoard()
         checkWin()
         changePlayer()
     }
@@ -70,19 +71,19 @@ const GameBoard = (() => {
 
 
 const DisplayController = (() => {
-    const container = document.querySelector(".board")
+    
 
     const drawBoard = () => {
+        const container = document.querySelector(".board")
         container.textContent = ''
         for (let i =0; i<3; i++){
             for (let j =0; j<3; j++){
                 cell = document.createElement('div')
                 cell.textContent = GameBoard.board[i][j]
-                cell.style.backgroundColor = 'blue'
+                cell.classList.add('cell')
                 
                 cell.addEventListener('click', () => {
-                    GameBoard.writeMarker(i,j)
-                    drawBoard()}
+                    GameBoard.writeMarker(i,j)}
                     )
 
                 container.appendChild(cell)
@@ -90,7 +91,18 @@ const DisplayController = (() => {
         }
     }
 
-    return {drawBoard}
+    const displayWinner = (player) =>{
+        const container = document.querySelector(".board")
+        winner_text = "The winner is " + player.name;
+        console.log(winner_text)
+        winner_p = document.createElement('div');
+        winner_p.textContent = winner_text
+        winner_p.classList.add('win');
+        container.replaceChildren(winner_p)
+
+
+    }
+    return {drawBoard, displayWinner}
 }) ()
 
 
