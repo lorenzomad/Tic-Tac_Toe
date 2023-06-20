@@ -2,6 +2,18 @@ body {
     text-align: center;
 }
 
+.interface {
+    display: flex;
+}
+
+.interface > div {
+    flex: 1;
+}
+
+.interface > .winner {
+    flex: 2;
+}
+
 .board {
     display: grid;
     grid-template-rows: repeat(3, 100px);
