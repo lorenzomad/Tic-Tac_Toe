@@ -1,10 +1,23 @@
+
+
 body {
+    --color1: #F5EFE7;
+    --color2: #D8C4B6;
+    --color3: #4F709C;
+    --color4: #213555;
     text-align: center;
+    background-color: var(--color4);
+    color: var(--color1);
 }
 
 .interface {
+    background-color: var(--color3);
     display: flex;
     align-items: center;
+    margin: 0;
+    
+    border-style: dashed;
+    border-color: var(--color2);
 }
 
 .interface > div {
@@ -16,13 +29,23 @@ body {
 }
 
 .board {
+    background-color: var(--color3);
     display: grid;
-    grid-template-rows: repeat(3, 100px);
-    grid-template-columns: repeat(3, 100px);
+    width: 300px;
+    height: 300px;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     margin: auto;
     margin-top: 50px;
     margin-bottom: 30px;
     justify-content: center;
+    align-items: center;
+}
+
+.board > div {
+    height: 50px;
+    width: 50px;
+    margin: auto;
 }
 
 .reset {
