@@ -13,11 +13,6 @@ const GameBoard = (() => {
         current_player = first_player
     }
 
-
-    
-
-    // TODO handle active player 
-
     for (let i = 0; i < 3; i++) {
         board[i] = []
 
@@ -73,16 +68,11 @@ const DisplayController = (() => {
                     )
 
                 container.appendChild(cell)
-
-                
-                
-                
-                
             }
         }
     }
 
-    return { drawBoard}
+    return {drawBoard}
 }) ()
 
 
