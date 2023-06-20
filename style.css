@@ -1,5 +1,10 @@
+body {
+    text-align: center;
+}
+
 .board {
     display: grid;
     grid-template-rows: repeat(3, 100px);
     grid-template-columns: repeat(3, 100px);
+    margin: auto;
 }
