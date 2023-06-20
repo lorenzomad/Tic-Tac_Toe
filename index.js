@@ -1,6 +1,8 @@
 const GameBoard = (() => {
     let board = []
 
+    // TODO handle active player 
+
     for (let i = 0; i < 3; i++) {
         board[i] = []
 
