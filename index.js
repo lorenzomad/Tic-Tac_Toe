@@ -99,7 +99,18 @@ const DisplayController = (() => {
                 cell = document.createElement('div')
                 cell.textContent = GameBoard.board[i][j]
                 cell.classList.add('cell')
-                
+                if (i===0){
+                    cell.classList.add('top')
+                }
+                if (i===2){
+                    cell.classList.add('bottom')
+                }
+                if (j===0){
+                    cell.classList.add('left')
+                }
+                if (j===2){
+                    cell.classList.add('right')
+                }
                 cell.addEventListener('click', () => {
                     GameBoard.writeMarker(i,j)}
                     )

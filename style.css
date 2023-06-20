@@ -8,6 +8,9 @@ body {
     text-align: center;
     background-color: var(--color4);
     color: var(--color1);
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Rock Salt', cursive;
 }
 
 .interface {
@@ -26,6 +29,7 @@ body {
 
 .interface > .winner {
     flex: 2;
+    color: var(--color4)
 }
 
 .board {
@@ -43,11 +47,31 @@ body {
 }
 
 .board > div {
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
     margin: auto;
 }
 
 .reset {
     margin: auto
+}
+
+.left {
+    border-right-style: dashed;
+    border-right-color: var(--color1);
+}
+
+.right {
+    border-left-style: dashed;
+    border-left-color: var(--color1);
+}
+
+.top {
+    border-bottom-style: dashed;
+    border-bottom-color: var(--color1);
+}
+
+.bottom {
+    border-top-style: dashed;
+    border-top-color: var(--color1);
 }
