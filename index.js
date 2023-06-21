@@ -31,7 +31,7 @@ const GameBoard = (() => {
         for (let i = 0; i < 3; i++) {
             board[i] = []
             for (let j = 0; j < 3; j++) {
-                board[i].push(['-'])
+                board[i].push('-')
             }
         }
         DisplayController.drawBoard()
@@ -60,6 +60,26 @@ const GameBoard = (() => {
         
     }
 
+    const checkTie = () => {
+        
+        let full = true
+        for (let i = 0 ; i<3; i++) {
+            for (let j = 0 ; j<3; j++) {
+                console.log(board[i][j])
+                if (board[i][j] === '-') {
+                    console.log('tie check')
+
+                    full= false
+                    break;
+                }
+            }
+        }
+
+        if (full=== true && winner === '') {
+            DisplayController.displayTie()
+        }
+    }
+
     const writeMarker = (x, y) => {
         if (winner != ''){
             console.log("start a new game to continue")
@@ -72,6 +92,7 @@ const GameBoard = (() => {
         board[x][y] = current_player.marker
         DisplayController.drawBoard()
         checkWin()
+        checkTie()
         changePlayer()
     }
 
@@ -124,14 +145,23 @@ const DisplayController = (() => {
         const winner_container = document.querySelector(".winner")
         winner_text = "The winner is " + player.name;
         console.log(winner_text)
-        winner_p = document.createElement('div');
+        winner_p = document.createElement('p');
         winner_p.textContent = winner_text
-        winner_p.classList.add('win');
         winner_container.replaceChildren(winner_p)
 
 
     }
-    return {drawBoard, displayWinner}
+    const displayTie = () =>{
+        const winner_container = document.querySelector(".winner")
+        winner_text = "It's a Tie!";
+        winner_p = document.createElement('p');
+        winner_p.textContent = winner_text
+        winner_container.replaceChildren(winner_p)
+
+
+    }
+
+    return {drawBoard, displayWinner, displayTie}
 }) ()
 
 
